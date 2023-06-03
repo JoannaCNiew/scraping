@@ -4,13 +4,13 @@ import requests
 page_url = 'https://wydawnictwowarstwy.pl/strona-glowna/171-nie-boli-9788367186933.html'
 page = requests.get(page_url)
 
+soup = BeautifulSoup(page.content, 'html.parser')
 # print(soup.prettify())
-
+# print(soup.title.get_text())
 info_title = soup.find(class_='h1 product-detail-name').get_text()
 
-soup = BeautifulSoup(page.content, 'html.parser')
 # info_book = soup.find(id='product-details').get_text()
-#
+
 print(f"title: {info_title}")
 # print(info_book)
 
@@ -20,7 +20,7 @@ print(f"title: {info_title}")
 #     row = [i.get_text for i in dd]
 #     print(row)
 
-table = soup.find_all('dt')
+table = soup.find('dt')
 for dt in table:
     cover = soup.find_all('dd')[1].get_text()
     edition = soup.find_all('dd')[3].get_text()
@@ -28,3 +28,4 @@ for dt in table:
 print(f"cover: {cover}")
 print(f"edition: {edition}")
 print(f"isbn: {isbn}")
+
