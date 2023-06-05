@@ -8,13 +8,12 @@ class Publisher(models.Model):
 
 
 class Book(models.Model):
-    id_book = models.IntegerField(primary_key=True)
-    title_book = models.CharField(max_length=100)
-    year_book = models.IntegerField()
-    edition_book = models.IntegerField(blank=True)
-    isbn_book = models.IntegerField(blank=True)
-    form_book = models.CharField(max_length=15, blank=True)
-    cover_book = models.CharField(max_length=15, blank=True)
+    title = models.CharField(max_length=100)
+    year = models.CharField(max_length=15, null=True)
+    edition = models.CharField(max_length=15, null=True)
+    isbn = models.CharField(max_length=15, null=True)
+    cover = models.CharField(max_length=15, null=True)
+    publisher = models.ForeignKey('Publisher', on_delete=models.CASCADE)
 
 
 class Deposit(models.Model):
